@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glowing Text and Image</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: white;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #inputField {
+            border: none;
+            background: none;
+            color: white;
+            font-size: 24px;
+            outline: none;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00;
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 24px;
+            text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00;
+        }
+        #image {
+            display: none;
+            margin-top: 20px;
+            width: 300px;
+            height: auto;
+            opacity: 0;
+            transition: opacity 2s;
+        }
+    </style>
+</head>
+<body>
+
+    <input type="text" id="inputField" placeholder="Type something...">
+    <div id="output"></div>
+    <img id="image" src="data:image/jpeg;base64,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" id="image">
+
+    <script>
+        const inputField = document.getElementById('inputField');
+        const output = document.getElementById('output');
+        const image = document.getElementById('image');
+
+        inputField.addEventListener('keypress', function (event) {
+            if (event.key === 'Enter') {
+                const inputValue = inputField.value.trim();
+                output.textContent = '';
+
+                if (inputValue.toLowerCase() === 'mike') {
+                    typeOutText("How do you know him?", output);
+                    image.style.display = 'block';
+                    setTimeout(() => {
+                        image.style.opacity = 1;
+                    }, 100);
+                }
+                inputField.value = '';
+            }
+        });
+
+        function typeOutText(text, outputElement) {
+            let index = 0;
+
+            function type() {
+                if (index < text.length) {
+                    outputElement.textContent += text.charAt(index);
+                    index++;
+                    setTimeout(type, 100); // Adjust speed here
+                }
+            }
+            type();
+        }
+    </script>
+</body>
+</html>
